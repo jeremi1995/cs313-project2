@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <!--TYPOGRAPHY-->
+    <div class="container">
+        <h1 class="pb-2 mt-4 mb-2 border-bottom">Bootstrap Cheat Sheet</h1>
+        <p class="lead">Lorem, <mark>ipsum dolor sit amet</mark> consectetur adipisicing elit. Voluptatum excepturi
+            placeat alias odit nesciunt
+            voluptate a, <del>ratione facere</del> harum totam, natus aliquam blanditiis nobis quos cumque quidem
+            commodi voluptates
+            nam! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maxime consequuntur aspernatur corrupti quasi
+            corporis at, aut eum. Earum quaerat quas provident aut magnam, est debitis? Ipsam praesentium hic dicta
+            eius. </p>
+        <hr>
+
+        <!-- ALIGNMENT AND TRANSFORMATION -->
+        <p class="text-left text-lowercase">LEFT ALIGNED TEXT</p>
+        <p class="text-center text-uppercase">center aligned text</p>
+        <p class="text-right text-capitalize">right aligned text</p>
+        <p class="text-justify"> <mark>Justified</mark> - Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non
+            veniam voluptatum beatae sapiente
+            iusto debitis velit excepturi pariatur enim assumenda! Similique porro nihil praesentium nemo eveniet id
+            deserunt incidunt sequi. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid, officia velit.
+            Cupiditate est repellendus fugiat veniam ipsum repudiandae necessitatibus doloremque illo asperiores
+            corrupti enim, ut laborum, labore laudantium saepe voluptatibus?</p>
+        <p class="text-nowrap"> <mark>No wrap</mark> Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis
+            animi iste debitis tempore facilis quis voluptatem cumque dignissimos nisi? Explicabo sapiente omnis
+            temporibus porro illo, beatae eveniet cum officiis quae. Lorem ipsum dolor sit amet consectetur adipisicing
+            elit. Praesentium, consequatur? Quae, maiores commodi. Molestiae quam nulla perspiciatis cumque sit natus
+            eveniet fugiat similique voluptatibus, tenetur odio velit atque. Illum, sunt!</p>
+        <hr>
+
+        <!-- QUICK FLOAT -->
+        <div class="float-right">Float right</div>
+        <div class="float-left"> Float left</div>
+
+        <!--CLEAR FLOAT-->
+        <div class="clearfix"></div>
+        <div class="float-right">Another Float right</div>
+        <div class="float-left"> Another Float left</div>
+        <div class="clearfix"></div>
+        <hr>
+        <blockquote class="blockquote">
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque ipsam similique doloribus itaque rerum
+                aperiam nostrum, et temporibus sequi ut. Architecto corporis ipsam beatae non eaque distinctio eius
+                voluptate aperiam.</p>
+            <footer class="blockquote-footer"> Quote by <cite title="John Doe">John Doe</cite></footer>
+        </blockquote>
+
+        <!--CONTEXTUAL COLORS-->
+        <p class="text-primary">Hello World</p>
+        <p class="text-success">Hello World</p>
+        <p class="text-info">Hello World</p>
+        <p class="text-warning">Hello World</p>
+        <p class="text-danger">Hello World</p>
+        <p class="text-muted">Hello World</p>
+
+        <!--CONTEXTUAL BACKGROUND COLORS-->
+        <p class="bg-primary">Hello World</p>
+        <p class="bg-success">Hello World</p>
+        <p class="bg-info">Hello World</p>
+        <p class="bg-warning">Hello World</p>
+        <p class="bg-danger">Hello World</p>
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="container">
+        <button class="btn btn-primary">Button</button>
+        <a href="#" class="btn btn-primary" role="button">Link</a>
+        <input type="submit" class="btn btn-primary" value="Submit">
+        <br><br>
+        <!-- CONTEXTUAL BUTTONS-->
+        <button class="btn btn-primary">Primary</button>
+        <button class="btn btn-success">Success</button>
+        <button class="btn btn-info">Info</button>
+        <button class="btn btn-warning">Warning</button>
+        <button class="btn btn-danger">Danger</button>
+        <button class="btn btn-light">Light</button>
+        <button class="btn btn-dark">Dark</button>
+        <button class="btn btn-link">Link</button>
+        <br><br>
+        <!-- BUTTON SIZES-->
+        <button class="btn btn-primary btn-lg">Large</button>
+        <button class="btn btn-success btn-default">Default</button>
+        <button class="btn btn-info btn-sm">Small</button>
+
+        <hr>
+    </div>
+
+    <!-- FORM -->
+    <div class="container">
+        <form>
+            <h2>The Form</h2>
+            <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" placeholder="Add Name">
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" class="form-control" placeholder="Add email">
+            </div>
+
+            <div class="form-group">
+                <label>Message</label>
+                <textarea class="form-control" placeholder="Add message"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Gender</label>
+                <select class="form-control" placeholder="Select Gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>File upload</label>
+                <input type="file">
+                <small class="form-text">only jpg or png allowed</small>
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox"> Check me out
+                </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+            
+        </form>
+
+    </div>
+
+
+    </div>
+
+    <div style="height:400px"></div>
+    <!-- Optional Java Script for Bootstrap-->
+    <script src="js/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="js/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

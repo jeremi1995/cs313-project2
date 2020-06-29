@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../stylesheets/bootstrap/css/bootstrap.min.css">
+    <title>Add Story</title>
+</head>
+
+<body>
+    <header class="navbar navbar-expand-sm bg-light navbar-light">
+        <div class="container">
+            <a class="navbar-brand mb-0 h1 text-dark" href="assign09.html">
+                myStories
+            </a>
+            <ul class="navbar-nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" href="addStory.html">Add Story</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="viewStories.html">View Stories</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+    <br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-md-4">
+                <img class="img-fluid" src="../resources/kiki.jpg" alt="" width="350" height="525">
+            </div>
+            <div class="col-sm-8 col-md-8">
+                <div id="result"></div>
+                <form action="/addStory" method="POST">
+                    <h2>Add a new story...</h2>
+                    <br>
+                    <div class="form-group" id="mail-type-group">
+                        <input class="form-control" type="date" placeholder="Date" name="story_date" required>
+                    </div>
+                    <p id="date-error" class="input-error" style="color:red"></p>
+
+                    <div class="form-group" id="mail-type-group">
+                        <input class="form-control" type="text" placeholder="story's name" name="story_name" required>
+                    </div>
+                    <p id="story-name-error" class="input-error" style="color:red"></p>
+
+                    <div class="form-group" id="zone-input-group">
+                        <textarea class="form-control" placeholder="description" name="story_description" required></textarea>
+                    </div>
+                    <p id="description-error" class="input-error" style="color:red"></p>
+
+                    <button class="btn btn-primary" type="submit" id="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br>
+</body>
+
+</html>
