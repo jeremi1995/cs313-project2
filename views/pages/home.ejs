@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../stylesheets/bootstrap/css/bootstrap.min.css">
+    <title>Home</title>
+</head>
+
+<body>
+    <header class="navbar navbar-expand-sm bg-light navbar-light">
+        <div class="container">
+            <a class="navbar-brand mb-0 h1 text-dark" href="/">
+                myStories
+            </a>
+            <% if ((typeof loggedIn != 'undefined') && loggedIn) { %>
+            <ul class="navbar-nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link" href="/addStory">Add Story</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/viewStories">View Stories</a>
+                </li>
+            </ul>
+            <% } %>
+
+            <% if (typeof messageFromServer != 'undefined') { %>
+                <p style="color:red"><%= messageFromServer %></p>
+            <% } %>
+
+
+            <div id="sign-in">
+                <% if (typeof loggedIn != 'undefined' && loggedIn) { %>
+                <form class="form-inline float-right" action="/" method="POST">
+                    <p>Hello, <%= first_name %> <%= last_name %>! </p>
+                    <input type="hidden" name="logout" value="true">
+                    <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Log Out</button>
+                </form>
+                <% } else { %>
+                <form class="form-inline float-right">
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="button">Sign-up</button>
+                </form>
+                <form class="form-inline float-right" action="/" method="POST">
+                    <input type="text" name="user_name" placeholder="Username" required>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <input type="hidden" name="login" value="true">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log-in</button>
+                </form>
+                <% } %>
+            </div>
+        </div>
+    </header>
+    <br><br>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-md-4">
+                <img class="img-fluid" src="../resources/kiki.jpg" alt="" width="350" height="525">
+            </div>
+            <div class="col-sm-8 col-md-8" id="displayDiv">
+                <h2>Welcome to myStories</h2>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <script></script>
+</body>
+
+</html>
