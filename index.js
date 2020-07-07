@@ -75,6 +75,26 @@ app.post("/", (req, res) => {
   }
 });
 
+app.get("/addStory", (req, res) => {
+  if (req.session.user_name) {
+    res.render("pages/addStory", { first_name: req.session.first_name, last_name: req.session.last_name });
+  }
+  else {
+    res.status(400);
+    res.send("Bad Request");
+  }
+});
+
+app.get("/viewStories", (req, res) => {
+  if (req.session.user_name) {
+    res.render("pages/viewStories", { first_name: req.session.first_name, last_name: req.session.last_name });
+  }
+  else {
+    res.status(400);
+    res.send("Bad Request");
+  }
+});
+
 app.post("/addStory", (req, res) => {
   console.log("receiving request for: " + req.url);
 

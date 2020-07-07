@@ -13,12 +13,14 @@ CREATE TABLE story (
     story_name TEXT NOT NULL,
     story_description TEXT NOT NULL
 );
+ALTER TABLE story ADD user_id INT REFERENCES users(id) NOT NULL;
 
 --Insert data to story
 INSERT INTO story (story_date, story_name, story_description) VALUES ('2020-06-27', 'Start Project2 Database', 'Today I started my project2 database');
 
 --Insert data to users:
 INSERT INTO users (first_name, last_name, user_name, password, date_of_birth) VALUES ('Jeremy', 'Duong', 'jeremi1995', 'uljlo78u8k', '1995-09-19');
+INSERT INTO users (first_name, last_name, user_name, password, date_of_birth) VALUES ('Teacher', 'Grader', 'testUserName', 'testPassword', '2020-01-01');
 
 GRANT SELECT, INSERT, UPDATE ON story TO clientuser1;
 GRANT USAGE, SELECT ON SEQUENCE story_id_seq TO clientuser1;

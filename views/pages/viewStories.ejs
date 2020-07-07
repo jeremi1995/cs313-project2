@@ -16,15 +16,20 @@
             </a>
             <ul class="navbar-nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link" href="home.html">Home</a>
+                    <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="addStory.html">Add Story</a>
+                    <a class="nav-link" href="/addStory">Add Story</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="viewStories.html">View Stories</a>
+                    <a class="nav-link" href="/viewStories">View Stories</a>
                 </li>
             </ul>
+            <form class="form-inline float-right" action="/" method="POST">
+                <p>Hello, <%= first_name %> <%= last_name %>! </p>
+                <input type="hidden" name="logout" value="true">
+                <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Log Out</button>
+            </form>
         </div>
     </header>
     <br><br>
