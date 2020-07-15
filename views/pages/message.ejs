@@ -11,19 +11,20 @@
 <body>
     <div class="container">
         <h2><%= message %></h2>
-
-        <% if (!(typeof story == 'undefined')) { %>
+        <% if (!(typeof stories == 'undefined')) { %>
         <table class="table">
             <tr>
                 <th>Story's name</th>
                 <th>Story's description</th>
                 <th>Date</th>
             </tr>
+            <% for(story of stories) { %>
             <tr>
                 <td><%= story.story_name %></td>
                 <td><%= story.story_description %></td>
                 <td><%= story.story_date %></td>
             </tr>
+            <% } %>
         </table>
         <% } %>
 

@@ -40,17 +40,23 @@
             </div>
             <div class="col-sm-8 col-md-8">
                 <div id="result"></div>
-                <form action="/viewStories" method="POST">
-                    <h2>Get Story</h2>
-                    <p>Enter the id of the story:</p>
-                    <br>
-                    <div class="form-group" id="mail-type-group">
-                        <input class="form-control" type="number" placeholder="Enter story's id" name="story_id" required>
-                    </div>
-                    <p id="date-error" class="input-error" style="color:red"></p>
-
-                    <button class="btn btn-primary" type="submit" id="submit">Submit</button>
-                </form>
+                <h2>My Stories...</h2>
+                <% if (!(typeof stories == 'undefined')) { %>
+                <table class="table">
+                    <tr>
+                        <th>Story's name</th>
+                        <th>Story's description</th>
+                        <th>Date</th>
+                    </tr>
+                    <% for(story of stories) { %>
+                    <tr>
+                        <td><%= story.story_name %></td>
+                        <td><%= story.story_description %></td>
+                        <td><%= story.story_date %></td>
+                    </tr>
+                    <% } %>
+                </table>
+                <% } %>
             </div>
         </div>
     </div>

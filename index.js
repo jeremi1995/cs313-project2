@@ -56,6 +56,8 @@ app.post("/", (req, res) => {
         req.session.first_name = result.rows[0].first_name;
         req.session.last_name = result.rows[0].last_name;
         req.session.date_of_birth = result.rows[0].date_of_birth;
+        req.session.user_id = result.rows[0].id;
+
         params = { loggedIn: true, first_name: req.session.first_name, last_name: req.session.last_name }
 
       }
@@ -69,7 +71,7 @@ app.post("/", (req, res) => {
   }
   if (req.body.logout) {
     req.session.destroy();
-    let params = { loggedIn: false, first_name: 'N/A', last_name: 'N/A'};
+    let params = { loggedIn: false, first_name: 'N/A', last_name: 'N/A' };
 
     res.render("pages/home", params);
   }
@@ -85,6 +87,7 @@ app.get("/addStory", (req, res) => {
   }
 });
 
+/*
 app.get("/viewStories", (req, res) => {
   if (req.session.user_name) {
     res.render("pages/viewStories", { first_name: req.session.first_name, last_name: req.session.last_name });
@@ -94,45 +97,56 @@ app.get("/viewStories", (req, res) => {
     res.send("Bad Request");
   }
 });
-
+*/
 app.post("/addStory", (req, res) => {
   console.log("receiving request for: " + req.url);
 
-  insertStoryIntoDB(req, function (err, result) {
-    console.log(JSON.stringify(result));
+  if (req.session.user_name) {
+    insertStoryIntoDB(req, function (err, result) {
 
-    let params = {};
+      let params = {};
 
-    if (err) {
-      console.log(err);
-      params = { message: "Error: unable to insert to database" };
+      if (err) {
+        console.log(err);
+        params = { message: "Error: unable to insert to database" };
 
-    }
-    else {
-      params = { message: "Add story successful!" };
-    }
-    res.render("pages/message", params);
-  });
+      }
+      else {
+        params = { message: "Add story successful!" };
+      }
+      res.render("pages/message", params);
+    });
+  }
+  else {
+    res.status(400);
+    res.send("Bad Request");
+  }
+
 });
 
-app.post("/viewStories", (req, res) => {
+app.get("/viewStories", (req, res) => {
   console.log("receiving request for: " + req.url);
 
-  getStoryFromDB(req, function (err, result) {
-    let params = {};
+  if (req.session.user_name) {
+    getStoryFromDB(req, function (err, result) {
+      let params = {};
 
-    if (err) {
-      console.log(err);
-      params = { message: "Error: unable to query from DB" };
-    }
-    else {
-      let message = "Story found!";
-      let story = result.rows[0];
-
-      params = { message: message, story: story };
-    }
-    res.render("pages/message", params);
-  });
+      if (err) {
+        console.log(err);
+        params = { message: "Error: unable to query from DB" };
+      }
+      else {
+        //Send an array of stories of the same user
+        let stories = result.rows;
+        params = { first_name: req.session.first_name, last_name: req.session.last_name, stories: stories };
+      }
+      res.render("pages/viewStories", params);
+    });
+  }
+  else {
+    res.status(400);
+    res.send("Bad Request");
+  }
 });
 
 //This part is just to test the functionality of the session
@@ -170,9 +184,10 @@ function insertStoryIntoDB(req, callback) {
   let story_date = req.body.story_date;
   let story_name = req.body.story_name;
   let story_description = req.body.story_description;
+  let user_id = req.session.user_id;
 
-  let sqlCMD = "INSERT INTO story (story_date, story_name, story_description) VALUES ($1,$2,$3)"
-  let params = [story_date, story_name, story_description];
+  let sqlCMD = "INSERT INTO story (story_date, story_name, story_description, user_id) VALUES ($1,$2,$3,$4)"
+  let params = [story_date, story_name, story_description, user_id];
 
   pool.query(sqlCMD, params, callback);
 
@@ -181,11 +196,11 @@ function insertStoryIntoDB(req, callback) {
 function getStoryFromDB(req, callback) {
   console.log("Retrieving story from database...");
 
-  let id = req.body.story_id;
-  console.log("Received ID is: " + id);
+  let user_id = req.session.user_id;
+  console.log("Received ID is: " + user_id);
 
-  let sqlCMD = "SELECT * FROM story WHERE id=$1::int";
-  let params = [id];
+  let sqlCMD = "SELECT * FROM story WHERE user_id=$1::int";
+  let params = [user_id];
 
   pool.query(sqlCMD, params, callback);
 }
