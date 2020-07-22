@@ -11,32 +11,24 @@
 <body>
     <div class="container">
         <h2><%= message %></h2>
-        <% if (!(typeof stories == 'undefined')) { %>
-        <table class="table">
-            <tr>
-                <th>Story's name</th>
-                <th>Story's description</th>
-                <th>Date</th>
-            </tr>
-            <% for(story of stories) { %>
-            <tr>
-                <td><%= story.story_name %></td>
-                <td><%= story.story_description %></td>
-                <td><%= story.story_date %></td>
-            </tr>
-            <% } %>
-        </table>
-        <% } %>
 
         <p>
-            Click this button to go back:
-            <button onclick="goBack()" class="btn btn-primary">Back</button>
+            <% if (viewStories) { %>
+                <button onclick="redirectViewStories()" class="btn btn-primary">Go to Stories</button>
+            <% } %>
+            <% if (home) { %>
+                <button onclick="redirectHome()" class="btn btn-primary">Home</button>
+            <% } %>
         </p>
     </div>
 
     <script>
-        function goBack() {
-            window.history.back();
+        function redirectViewStories() {
+            window.location.replace("/viewStories");
+        }
+
+        function redirectHome() {
+            window.location.replace("/");
         }
     </script>
 </body>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../stylesheets/bootstrap/css/bootstrap.min.css">
+    <title>View Stories</title>
+</head>
+
+<body>
+    <header class="navbar navbar-expand-sm bg-light navbar-light">
+        <div class="container">
+            <a class="navbar-brand mb-0 h1 text-dark" href="/">
+                myStories
+            </a>
+        </div>
+    </header>
+    <br><br>
+    <div class="container" style="width:50%">
+
+        <div id="result" style="color:red"></div>
+        <form>
+            <h2>Sign-up</h2>
+            <br>
+            <div class="form-group" id="mail-type-group">
+                <label for="first_name">First Name:</label>
+                <input class="form-control" type="text" placeholder="First name" name="first_name" id="first_name"
+                    required>
+            </div>
+            <p id="date-error" class="input-error" style="color:red"></p>
+
+            <div class="form-group" id="mail-type-group">
+                <label for="last_name">Last Name:</label>
+                <input class="form-control" type="text" placeholder="Last name" name="last_name" id="last_name"
+                    required>
+            </div>
+            <p id="story-name-error" class="input-error" style="color:red"></p>
+
+            <div class="form-group" id="zone-input-group">
+                <label for="user_name">Username:</label>
+                <input class="form-control" type="text" placeholder="Username" name="user_name" id="user_name" required>
+            </div>
+            <p id="description-error" class="input-error" style="color:red"></p>
+
+            <div class="form-group" id="zone-input-group">
+                <label for="password">Password:</label>
+                <input class="form-control" type="password" placeholder="Password" name="password" id="password"
+                    required>
+            </div>
+            <p id="description-error" class="input-error" style="color:red"></p>
+
+            <div class="form-group" id="zone-input-group">
+                <label for="date_of_birth">Date of Birth:</label>
+                <input class="form-control" type="date" placeholder="Date of Birth" name="date_of_birth"
+                    id="date_of_birth" required>
+            </div>
+            <p id="description-error" class="input-error" style="color:red"></p>
+
+            <button class="btn btn-primary" type="button" id="signUp">Sign-up</button>
+        </form>
+
+    </div>
+    <script src="/.js/signUp.js"></script>
+    </div>
+    <br>
+</body>
+
+</html>

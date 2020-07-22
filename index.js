@@ -24,6 +24,7 @@ app.set("view engine", "ejs");
 
 //Database connection:
 const { Pool } = require('pg');
+const { render } = require('ejs');
 const connectionString = process.env.DATABASE_URL || "postgres://clientuser1:123456@localhost:5432/project2"
 const pool = new Pool({ connectionString: connectionString });
 
@@ -43,6 +44,34 @@ app.get("/", (req, res) => {
   res.render("pages/home", params);
 });
 
+//go to sign up page
+app.get("/signUp", (req, res)=> {
+  console.log("receiving request for: " + req.url);
+  res.render("pages/signUp");
+});
+
+//Receive sign up info
+app.post("/signUp", (req, res)=> {
+  console.log(req.body);
+  //look for redundancy with database
+  
+  insertNewUser(req, function (err, result) {
+    if (err) {
+      console.log(err);
+      if (err.code == '23505') {
+        res.send({success: false, message: "Username has already been used!"});
+      }
+      else {
+        res.send({success: false, message: "PSQL Database error code: " + err.code});
+      }
+    }
+    else {
+        res.send({success: true, message: 'Sign-up Successful!'});
+    }
+  });
+  
+});
+
 //This endpoint is to handle login, logout request
 app.post("/", (req, res) => {
   console.log("receiving request for: " + req.url);
@@ -57,6 +86,8 @@ app.post("/", (req, res) => {
         req.session.last_name = result.rows[0].last_name;
         req.session.date_of_birth = result.rows[0].date_of_birth;
         req.session.user_id = result.rows[0].id;
+
+        console.log(result);
 
         params = { loggedIn: true, first_name: req.session.first_name, last_name: req.session.last_name }
 
@@ -87,17 +118,6 @@ app.get("/addStory", (req, res) => {
   }
 });
 
-/*
-app.get("/viewStories", (req, res) => {
-  if (req.session.user_name) {
-    res.render("pages/viewStories", { first_name: req.session.first_name, last_name: req.session.last_name });
-  }
-  else {
-    res.status(400);
-    res.send("Bad Request");
-  }
-});
-*/
 app.post("/addStory", (req, res) => {
   console.log("receiving request for: " + req.url);
 
@@ -112,7 +132,7 @@ app.post("/addStory", (req, res) => {
 
       }
       else {
-        params = { message: "Add story successful!" };
+        params = { message: "Add story successful!", viewStories: true };
       }
       res.render("pages/message", params);
     });
@@ -199,8 +219,24 @@ function getStoryFromDB(req, callback) {
   let user_id = req.session.user_id;
   console.log("Received ID is: " + user_id);
 
-  let sqlCMD = "SELECT * FROM story WHERE user_id=$1::int";
+  let sqlCMD = "SELECT * FROM story WHERE user_id=$1::int ORDER BY story_date DESC, id DESC";
   let params = [user_id];
+
+  pool.query(sqlCMD, params, callback);
+}
+
+function insertNewUser(req, callback) {
+  
+  let first_name = req.body.first_name;
+  let last_name = req.body.last_name;
+  let user_name = req.body.user_name;
+  let password = req.body.password;
+  let date_of_birth = req.body.date_of_birth;
+
+  console.log(user_name);
+
+  let sqlCMD = "INSERT INTO users (first_name, last_name, user_name, password, date_of_birth) VALUES ($1, $2, $3, $4, $5)";
+  let params = [first_name, last_name, user_name, password, date_of_birth];
 
   pool.query(sqlCMD, params, callback);
 }

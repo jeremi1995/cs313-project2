@@ -14,6 +14,7 @@ CREATE TABLE story (
     story_description TEXT NOT NULL
 );
 ALTER TABLE story ADD user_id INT REFERENCES users(id) NOT NULL;
+ALTER TABLE users ADD UNIQUE (user_name);
 
 --Insert data to story
 INSERT INTO story (story_date, story_name, story_description) VALUES ('2020-06-27', 'Start Project2 Database', 'Today I started my project2 database');
