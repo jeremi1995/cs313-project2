@@ -35,29 +35,24 @@
     <br><br>
     <div class="container">
         <div class="row">
-            <div class="col-sm-4 col-md-4">
-                <img class="img-fluid" src="../resources/kiki.jpg" alt="" width="350" height="525">
-            </div>
-            <div class="col-sm-8 col-md-8">
-                <div id="result"></div>
-                <h2>My Stories...</h2>
-                <% if (!(typeof stories == 'undefined')) { %>
-                <table class="table">
-                    <tr>
-                        <th>Story's name</th>
-                        <th>Story's description</th>
-                        <th>Date</th>
-                    </tr>
-                    <% for(story of stories) { %>
-                    <tr>
-                        <td><%= story.story_name %></td>
-                        <td><%= story.story_description %></td>
-                        <td><%= story.story_date %></td>
-                    </tr>
-                    <% } %>
-                </table>
+            <div id="result"></div>
+            <h2>My Stories...</h2>
+            <% if (!(typeof stories == 'undefined')) { %>
+            <table class="table">
+                <tr>
+                    <th>Story's name</th>
+                    <th>Story's description</th>
+                    <th>Date</th>
+                </tr>
+                <% for(story of stories) { %>
+                <tr>
+                    <td><%= story.story_name %></td>
+                    <td><%= story.story_description %></td>
+                    <td><%= story.story_date %></td>
+                </tr>
                 <% } %>
-            </div>
+            </table>
+            <% } %>
         </div>
     </div>
     <br>
