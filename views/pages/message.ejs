@@ -13,10 +13,10 @@
         <h2><%= message %></h2>
 
         <p>
-            <% if (viewStories) { %>
+            <% if (typeof viewStories != 'undefined' && viewStories == true) { %>
                 <button onclick="redirectViewStories()" class="btn btn-primary">Go to Stories</button>
             <% } %>
-            <% if (home) { %>
+            <% if (typeof home != 'undefined' && home == true) { %>
                 <button onclick="redirectHome()" class="btn btn-primary">Home</button>
             <% } %>
         </p>
